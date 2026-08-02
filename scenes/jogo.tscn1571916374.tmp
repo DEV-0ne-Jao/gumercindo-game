@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://brxxrk5j5tsas"]
+
+[ext_resource type="PackedScene" uid="uid://dula4rqty1v05" path="res://scenes/knight.tscn" id="1_7bb4d"]
+[ext_resource type="PackedScene" uid="uid://dgkeeojs1jkgl" path="res://scenes/enemy.tscn" id="2_sq8yp"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sq8yp"]
+distance = -140.0
+
+[node name="Jogo" type="Node2D" unique_id=1155870740]
+
+[node name="Knight" parent="." unique_id=1951818172 instance=ExtResource("1_7bb4d")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1477844370]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=177873926]
+shape = SubResource("WorldBoundaryShape2D_sq8yp")
+
+[node name="Enemy" parent="." unique_id=260788570 instance=ExtResource("2_sq8yp")]
+position = Vector2(242, 5)

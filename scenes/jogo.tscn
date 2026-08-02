@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://cd5qc4k8hq2u2"]
+
+[ext_resource type="Script" uid="uid://c8hct28pku625" path="res://scripts/jogo.gd" id="1_lphrh"]
+[ext_resource type="Texture2D" uid="uid://b1gaqbtt1wcfo" path="res://assets/sprites/Cenário longo.png" id="2_0c0ry"]
+[ext_resource type="PackedScene" uid="uid://dula4rqty1v05" path="res://scenes/player.tscn" id="2_1b3iq"]
+[ext_resource type="PackedScene" uid="uid://dgkeeojs1jkgl" path="res://scenes/enemy.tscn" id="3_k05ng"]
+[ext_resource type="PackedScene" uid="uid://c61p3qmsbrj0d" path="res://scenes/save_data.tscn" id="4_k05ng"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sq8yp"]
+distance = -140.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0c0ry"]
+normal = Vector2(0.9999238, 0.0123447385)
+distance = -486.86414
+
+[node name="Jogo" type="Node2D" unique_id=1155870740]
+position = Vector2(0, 1)
+script = ExtResource("1_lphrh")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1224392361]
+offset_left = -511.0
+offset_top = -918.0
+offset_right = 11201.0
+offset_bottom = 490.0
+texture = ExtResource("2_0c0ry")
+
+[node name="Enemy" parent="." unique_id=41728559 instance=ExtResource("3_k05ng")]
+position = Vector2(86, 117)
+
+[node name="Player" parent="." unique_id=1951818172 instance=ExtResource("2_1b3iq")]
+position = Vector2(40, 335)
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1902522165]
+zoom = Vector2(0.8, 0.8)
+limit_left = -505
+limit_bottom = 489
+
+[node name="SaveData" parent="." unique_id=307919744 instance=ExtResource("4_k05ng")]
+
+[node name="Limites de mundo" type="StaticBody2D" parent="." unique_id=1477844370]
+position = Vector2(-14, 235)
+
+[node name="Chão" type="CollisionShape2D" parent="Limites de mundo" unique_id=177873926]
+shape = SubResource("WorldBoundaryShape2D_sq8yp")
+
+[node name="Lateral Esquerda" type="CollisionShape2D" parent="Limites de mundo" unique_id=1206415785]
+shape = SubResource("WorldBoundaryShape2D_0c0ry")
+
+[connection signal="update_data" from="." to="SaveData" method="_on_jogo_update_data"]
+[connection signal="inimigoMorreu" from="Enemy" to="." method="_on_enemy_inimigo_morreu"]
