@@ -12,7 +12,7 @@ var vidaMax:int = 10
 var vida:int = vidaMax
 
 @onready var bullet: RayCast2D = $Bullet
-
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var lbl_vida: Label = $lblVida
 
 func printVida() -> void :
@@ -30,6 +30,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Atacar"):
+		animated_sprite.play("Atacking")
 		if bullet.is_colliding():
 			var alvo = bullet.get_collider()
 			if alvo is Enemy:
@@ -48,6 +49,7 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("move_left", "move_right")
 	if direction:
 		velocity.x = direction * SPEED
+		animated_sprite.play("Walking")
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 

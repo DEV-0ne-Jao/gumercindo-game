@@ -1,18 +1,17 @@
 [gd_scene format=3 uid="uid://dula4rqty1v05"]
 
 [ext_resource type="Script" uid="uid://q3w66uw3wr22" path="res://scripts/Player.gd" id="1_g2els"]
-[ext_resource type="Texture2D" uid="uid://c58gnfdcnxjei" path="res://assets/sprites/Knight.png" id="2_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://b7tn8epfnsh2b" path="res://assets/sprites/Gumercindo atirando maior.png" id="3_qhqgy"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qxgmm"]
-atlas = ExtResource("2_qhqgy")
-region = Rect2(0, 0, 64, 64)
+[ext_resource type="Texture2D" uid="uid://c0mmi4hgpyxxf" path="res://assets/sprites/Gumecindo Walking1.png" id="3_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://dneefoffh43d4" path="res://assets/sprites/Gumecindo Walking2.png" id="4_fjrip"]
+[ext_resource type="Texture2D" uid="uid://dr3i0jgou7x6i" path="res://assets/sprites/Gumecindo Walking3.png" id="5_smehm"]
+[ext_resource type="Texture2D" uid="uid://blhfumxjh6mnv" path="res://assets/sprites/Gumecindo Walking4.png" id="6_ur7pv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5fsgc"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qxgmm")
+"texture": ExtResource("3_qhqgy")
 }],
 "loop": true,
 "name": &"Atacking",
@@ -20,10 +19,27 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_qhqgy")
+"texture": ExtResource("3_tuyoq")
 }],
 "loop": true,
 "name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_tuyoq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_fjrip")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_smehm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ur7pv")
+}],
+"loop": true,
+"name": &"Walking",
 "speed": 5.0
 }]
 
@@ -41,7 +57,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [&"Idle"]
 }
 
@@ -57,7 +73,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0.0009999999, 0.37, 1.19),
 "transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
+"update": 0,
 "values": [&"Idle", &"Atacking", &"Idle"]
 }
 
@@ -71,7 +87,7 @@ _data = {
 script = ExtResource("1_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1851310715]
-position = Vector2(42, -80)
+position = Vector2(26, -96)
 sprite_frames = SubResource("SpriteFrames_5fsgc")
 animation = &"Idle"
 

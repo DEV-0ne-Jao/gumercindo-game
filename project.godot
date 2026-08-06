@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="teste de jogo de luta"
+config/name="Gumercindo Game"
 run/main_scene="uid://i2c8wrfmaxi"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
