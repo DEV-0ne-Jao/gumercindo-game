@@ -36,8 +36,8 @@ func tomarDano(dano:int)->void:
 
 
 func _ready() -> void:
-	printVida()
 	vida = vidaMax
+	printVida()
 	
 var direction:int = 0
 func _physics_process(delta: float) -> void:

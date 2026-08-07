@@ -110,3 +110,8 @@ offset_bottom = -177.0
 text = "Vida"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AttackTime" type="Timer" parent="." unique_id=202099525]
+wait_time = 0.05
+
+[connection signal="timeout" from="AttackTime" to="." method="_on_attack_time_timeout"]

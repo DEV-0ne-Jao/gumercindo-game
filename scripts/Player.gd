@@ -10,10 +10,12 @@ const JUMP_VELOCITY = -400.0
 var dano:int = 1
 var vidaMax:int = 10
 var vida:int = vidaMax
+var atacando:bool = false
 
 @onready var bullet: RayCast2D = $Bullet
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var lbl_vida: Label = $lblVida
+@onready var attack_time: Timer = $AttackTime
 
 func printVida() -> void :
 	lbl_vida.text = "Vida: " + str(vida)
@@ -30,7 +32,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Atacar"):
-		animated_sprite.play("Atacking")
+		atacando = true
+		attack_time.start()
 		if bullet.is_colliding():
 			var alvo = bullet.get_collider()
 			if alvo is Enemy:
@@ -49,8 +52,17 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("move_left", "move_right")
 	if direction:
 		velocity.x = direction * SPEED
-		animated_sprite.play("Walking")
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-
+	
+	if direction == 0 and not atacando:
+		animated_sprite.play("Idle")
+	elif direction !=0 and not atacando:
+		animated_sprite.play("Walking")
+	elif atacando:
+		animated_sprite.play("Atacking")
 	move_and_slide()
+
+
+func _on_attack_time_timeout() -> void:
+	atacando = false
